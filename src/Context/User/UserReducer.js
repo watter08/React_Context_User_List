@@ -37,7 +37,7 @@ export default (state , action ) => {
                    ...state,
                    UserForm: {
                        ...state.UserForm,
-                       [payload.name] : payload.value
+                       [payload.name] : InputsValidation({...payload, prev : state.UserForm[payload.name]})
                    },
                    Errors: getInputErrorMessage(state , payload)
                }
@@ -102,3 +102,12 @@ const getFormErrorMessages = (prevState) => {
     }
     return validationErrors;
 };
+
+const InputsValidation = (payload) => {
+    var regexString = new RegExp("^[a-zA-Z ]+$");
+    var regexNumber = new RegExp("^[0-9]+$");
+    var regexLink = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
+    return (payload.Validation == 'letter' || payload.Validation == 'number')  ?
+           (regexString.test(payload.value) == true || regexNumber.test(payload.value) == true ) ? payload.value : payload.prev :
+           payload.value;
+}

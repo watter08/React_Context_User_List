@@ -23,6 +23,7 @@ const InputComponent = ({
     IsDisable = false,
     Min,
     Max,
+    Validation,
     ...rest
 }) => {
 
@@ -45,21 +46,15 @@ const InputComponent = ({
                 min={Min}
                 max={Max}
                 color='danger'
-            />                     
+                Validation={Validation}
+            />                    
                 
                 <ErrorMessage 
                 Errors={Errors}
                 Name={Name}
                 TypeInput={TypeInput}
                 />
-
                     <Form.Text className="H-7" id={TextId} muted>{LabelMuted}</Form.Text>
-            
-            {/* {String(Label).length > 0 && (<Form.Text id={TextId} muted>{LabelMuted}</Form.Text>)}
-
-
-            {Errors[Name] && (<Form.Text id={TextId} muted>{Errors[Name]}</Form.Text>)} */}
-
         </div>
     )
 }

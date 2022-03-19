@@ -115,7 +115,7 @@ const UserState = (props) => {
 
     const handleChangeFormInput = ({ currentTarget: input }) => {
         try {
-            dispatch({ type: 'ON_CHANGE_INPUT_FORM', payload: { name: input.name, value: input.value } })
+            dispatch({ type: 'ON_CHANGE_INPUT_FORM', payload: { name: input.name, value: input.value, Validation : input.attributes['validation']?.value } })
         } catch (error) {
             toast.warning(`${error.message}`)
         }

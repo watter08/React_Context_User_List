@@ -66,6 +66,7 @@ const UserFormModal = ({
                         OnChange={handleChangeFormInput}
                         OnEnter={() => { }}
                         Errors={errors}
+                        Validation="letter"
                     />
                 </Col>
 
@@ -84,6 +85,7 @@ const UserFormModal = ({
                         OnChange={handleChangeFormInput}
                         OnEnter={() => { }}
                         Errors={errors}
+                        Validation="letter"
                     />
                 </Col>
 
@@ -120,6 +122,7 @@ const UserFormModal = ({
                         OnChange={handleChangeFormInput}
                         OnEnter={() => { }}
                         Errors={errors}
+                        Validation="link"
                     />
                 </Col>
 
