@@ -5,6 +5,7 @@ const NavbarComponent = ({
     Barnd = '',
     Search = () => {},
     OnChange = () => {},
+    OnClick = () => {},
     InputSearch = '',
     ...rest
 }) => {
@@ -21,10 +22,10 @@ const NavbarComponent = ({
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                        
                         </ul>
-                        <form className="d-flex">
+                        <div className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" value={InputSearch} onChange={OnChange} />
-                            <button className="btn btn-outline-success" onClick={Search}>Buscar</button>
-                        </form>
+                            <button className="btn btn-outline-success" onClick={OnClick}>Create</button>
+                        </div>
                     </div>
                 </div>
             </nav>

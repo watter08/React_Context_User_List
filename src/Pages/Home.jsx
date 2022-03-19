@@ -1,8 +1,9 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState, memo } from "react";
+import useModalHooks from '../Hooks/useModalHooks';
 import UserContext from "../Context/User/UserContext";
 import UserCardComponent from "../Component/UserCardComponent"
 import NavbarComponent from "../Component/NavbarComponent";
-
+import UserFormModal from './UserFormModal';
 
 
 
@@ -11,12 +12,26 @@ import NavbarComponent from "../Component/NavbarComponent";
 
 const HomeComponent = () => {
 
-    const { Users,GetUsers, SelectedUser, handleChangeInput, InputSearch } = useContext(UserContext);
+    const { handleClose , handleShow , handleToggle , show } = useModalHooks(false);
+    const { 
+        Users,
+        GetUsers, 
+        SelectedUser, 
+        handleChangeInput, 
+        InputSearch, 
+        handleChangeFormInput , 
+        UserForm, 
+        handleSubmit, 
+        Errors, 
+        handleFormError,
+        DeleteUser,
+        handleSelectUser,
+     } = useContext(UserContext);
     const [ state , setState ] = useState([])
 
 
     useEffect(() => {
-        GetUsers()
+        Promise.all([GetUsers(), handleFormError()])
     }, [])
 
     useEffect(() => {
@@ -34,6 +49,11 @@ const HomeComponent = () => {
     },[Users]);
 
 
+    const HanldeSelectUser = async (Users) => {
+        await Promise.all([handleToggle() ,handleSelectUser(Users) ])
+        await handleFormError();
+    }
+
     return(
         <div className="">
 
@@ -42,12 +62,26 @@ const HomeComponent = () => {
         Search={SearchLocalUser} 
         OnChange={SearchLocalUser}
         InputSearch={InputSearch}
+        OnClick={handleShow}
         />
 
 
         <br />
 
-        <UserCardComponent User={state} />
+        <UserCardComponent User={state} DeleteUser={DeleteUser} HanldeSelectUser={HanldeSelectUser}  />
+
+        <UserFormModal 
+        show={show} 
+        handleToggle={handleToggle}
+        handleClose={handleClose}
+        handleChangeFormInput={handleChangeFormInput}
+        UserForm={UserForm}
+        handleSubmit={(Users) => {handleSubmit(Users); handleClose() }}
+        FooterButtonSubmitLabel={UserForm?.id ? 'Actualizar' : 'Guardar'}
+        errors={Errors}
+        />
+
+
 
         </div>
     )
@@ -55,4 +89,4 @@ const HomeComponent = () => {
 
 
 
-export default HomeComponent;
+export default memo(HomeComponent);
