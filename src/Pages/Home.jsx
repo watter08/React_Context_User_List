@@ -66,7 +66,8 @@ const HomeComponent = () => {
         />
 
 
-        <br />
+       
+        <h3 className="text-white text-center p-5">Hover Image</h3>
 
         <UserCardComponent User={state} DeleteUser={DeleteUser} HanldeSelectUser={HanldeSelectUser}  />
 
