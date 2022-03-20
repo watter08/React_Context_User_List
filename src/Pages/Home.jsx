@@ -16,7 +16,6 @@ const HomeComponent = () => {
     const { 
         Users,
         GetUsers, 
-        SelectedUser, 
         handleChangeInput, 
         InputSearch, 
         handleChangeFormInput , 
@@ -31,7 +30,7 @@ const HomeComponent = () => {
 
 
     useEffect(() => {
-        Promise.all([GetUsers(), handleFormError()])
+        Promise.all([GetUsers(), handleFormError()]);
     }, [])
 
     useEffect(() => {

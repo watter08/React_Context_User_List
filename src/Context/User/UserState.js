@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react"
+import { useReducer } from "react"
 import { toast } from "react-toastify";
 import UserReducer from "./UserReducer"
 import UserContext from "./UserContext"
@@ -142,7 +142,6 @@ const UserState = (props) => {
             ...state,
             GetUsers,
             GetUser,
-            DeleteUser,
             UpdateUser,
             DeleteUser,
             handleChangeInput,

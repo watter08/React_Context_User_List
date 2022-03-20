@@ -42,8 +42,8 @@ import { toast } from 'react-toastify';
  * **********************************************************/
   
   export function isValidPhone(string = "")   {
-    const regEx = /^(\()?\d{3}-?(\))?\d{3}-?\d{4}$/;
-    return (string && string.match(regEx)) ? true : false;
+    const regEx = new RegExp(/^(\()?\d{3}-?(\))?\d{3}-?\d{4}$/);
+    return (string && string.match(regEx)) ? true : false; 
   }
 
   
@@ -52,7 +52,8 @@ import { toast } from 'react-toastify';
  * **********************************************************/
 
   export const hasEnoughLength = (string, minimunCount)   => {
-    const regEx = /[a-zA-Z\t\h]+|(^$)/;
+    //eslint-disable-next-line
+    const regEx = new RegExp(/[a-zA-Z\t\h]+|(^$)/);
     return (string?.length >= minimunCount && string.match(regEx) && string?.trim()) ? true : false;
   };
 
@@ -73,7 +74,8 @@ import { toast } from 'react-toastify';
  * **********************************************************/
 
   export const isValidEmail = (string)   => {
-    const regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+    //eslint-disable-next-line
+    const regEx = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/);
     return (string && string.match(regEx)) ?true : false;
   }
 
@@ -110,7 +112,7 @@ import { toast } from 'react-toastify';
  * **********************************************************/
 
   export const isValidPassword = (string)  => {
-    const regEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    const regEx = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/);
     return (string && string.match(regEx)) ? true : false;
   }
 

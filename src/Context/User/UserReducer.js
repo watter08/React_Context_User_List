@@ -11,7 +11,7 @@ import {
   } from '../Types';
 
 
-export default (state , action ) => {
+const useReducer = (state , action ) => {
     try {
         
         const { payload , type } = action
@@ -54,7 +54,7 @@ export default (state , action ) => {
             case DELETE_USER:
                 return{
                     ...state,
-                    Users: [...state.Users].filter((value) => value.id != payload)
+                    Users: [...state.Users].filter((value) => value.id !== payload)
                 }
             case HANDLE_SELECT_USER:
                 return{
@@ -64,7 +64,7 @@ export default (state , action ) => {
             case UPDATE_USER:
                 return{
                     ...state,
-                    Users: [...state.Users].filter((value) => value.id != payload.id).concat(payload.value)
+                    Users: [...state.Users].filter((value) => value.id !== payload.id).concat(payload.value)
                 }
             default : 
             return state;
@@ -106,8 +106,10 @@ const getFormErrorMessages = (prevState) => {
 const InputsValidation = (payload) => {
     var regexString = new RegExp("^[a-zA-Z ]+$");
     var regexNumber = new RegExp("^[0-9]+$");
-    var regexLink = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
-    return (payload.Validation == 'letter' || payload.Validation == 'number')  ?
-           (regexString.test(payload.value) == true || regexNumber.test(payload.value) == true ) ? payload.value : payload.prev :
+    // var regexLink = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
+    return (payload.Validation === 'letter' || payload.Validation === 'number')  ?
+           (regexString.test(payload.value) === true || regexNumber.test(payload.value) === true ) ? payload.value : payload.prev :
            payload.value;
 }
+
+export default useReducer;

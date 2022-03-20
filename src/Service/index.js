@@ -61,13 +61,13 @@ const GetHeadersConfig = async () => {
   }
 }
 
-
-
-export default { 
+const AllAxios = { 
   get : axios.get,
   post : MethodPost,
   put : axios.put,
   delete : axios.delete
 };
+
+export default AllAxios;
 
 
