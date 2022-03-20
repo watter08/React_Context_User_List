@@ -4,7 +4,7 @@ import UserContext from "../Context/User/UserContext";
 import UserCardComponent from "../Component/UserCardComponent"
 import NavbarComponent from "../Component/NavbarComponent";
 import UserFormModal from './UserFormModal';
-
+import FooterComponent from '../Component/FooterComponent'
 
 
 
@@ -82,7 +82,7 @@ const HomeComponent = () => {
         errors={Errors}
         />
 
-
+        <FooterComponent/>
 
         </div>
     )
